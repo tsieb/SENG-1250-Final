@@ -16,6 +16,7 @@ class Patient : public Hospital
     string blood_type;
     double height;
     double weight;
+    int id;
 
     void set_Age(int);
     int get_Age();

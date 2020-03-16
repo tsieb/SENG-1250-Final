@@ -7,7 +7,7 @@
 using namespace std;
 void startUp()
 {
-    cout<<"Medicare 2000 - Booting"<<endl;
+    cout<<"Medicare 2020 - Booting"<<endl;
     cout<<"                Booting."<<endl;
     cout<<"                Booting.."<<endl;
     cout<<"                Booting..."<<endl<<endl;
@@ -18,6 +18,6 @@ void startUp()
 int int main(int argc, char const *argv[])
 {
     startUp();
-    cout<<"List of options"<<endl
+    cout<<"List of options"<<endl;
     return 0;
 }
