@@ -5,8 +5,19 @@
 #include "Hospital.h"
 #include "Patient.h"
 using namespace std;
+void startUp()
+{
+    cout<<"Medicare 2000 - Booting"<<endl;
+    cout<<"                Booting."<<endl;
+    cout<<"                Booting.."<<endl;
+    cout<<"                Booting..."<<endl<<endl;
+    cout<<"/tInitialization Complete"<<endl<<endl;
+}
 
-int int main(int argc, char const *argv[]) {
-    /* code */
+
+int int main(int argc, char const *argv[])
+{
+    startUp();
+    cout<<"List of options"<<endl
     return 0;
 }

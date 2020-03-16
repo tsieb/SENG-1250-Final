@@ -45,3 +45,13 @@ std::string Hospital::get_Address()
 {
     return address;
 }
+void Hospital::newOrder(string* order, int l)
+{
+    fstream orderFile;
+    orderFile.open("orders.dat", ios::app);
+    for(int i = 0; i <= l, i+=2)
+    {
+        orderFile<< *(order + i)<<" "<< *(order + (i + 1));
+    }
+    orderFile.close();
+}

@@ -25,5 +25,7 @@ public:
     int get_Number_Of_Nurses();
     void set_Address(string);
     std::string get_Address();
+    void newOrder();
+    
 };
 #endif
