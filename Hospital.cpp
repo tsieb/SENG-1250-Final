@@ -4,7 +4,7 @@
 #include <string>
 #include "Hospital.h"
 using namespace std;
-
+//test
 int Hospital::get_Number_Of_Patients()
 {
     fstream patientFile;
