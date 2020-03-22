@@ -42,3 +42,28 @@ void Patient::add_Allergy(string allergy)
 {
     //TODO add allergy to allergies
 }
+bool check_In_Patient()
+{
+    fstream patientFile;
+    patientFile.open("patients.dat", ios::app);
+    if (space_Available())
+    {
+        cout<<"Enter Name: ";
+        cin>>name;
+        cout<<"Enter Age: ";
+        cin>>age;
+        cout<<"Enter Height: ";
+        cin>>height;
+        cout<<"Enter Weight: ";
+        cin>>weight;
+        cout<<"Enter ID: ";
+        cin>>id;
+        cout<<"Enter Blood Type: ";
+        cin>>blood_type;
+        patientFile<<name<<" "<<age<<" "<<height<<" "<<weight<<" "<<id<<" "<<blood_type;
+        patientFile.close();
+        return true;
+    }
+    patientFile.close();
+    return false;
+}

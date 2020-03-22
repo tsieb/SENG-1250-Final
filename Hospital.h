@@ -15,7 +15,6 @@ public:
     int number_of_nurses;
     string address;
 
-    void set_Number_Of_Patients(int);
     int get_Number_Of_Patients();
     void set_Number_Of_Beds(int);
     int get_Number_Of_Beds();
@@ -26,6 +25,8 @@ public:
     void set_Address(string);
     std::string get_Address();
     void newOrder();
-    
+    bool space_Available();
+
+
 };
 #endif

@@ -5,12 +5,21 @@
 #include "Hospital.h"
 using namespace std;
 
-void Hospital::set_Number_Of_Patients(int number_of_patients)
-{
-    this->number_of_patients = number_of_patients;
-}
 int Hospital::get_Number_Of_Patients()
 {
+    fstream patientFile;
+    std::string patient;
+    patientFile.open("patients.dat", ios::in);
+    while(getline(patientFile, patient))
+    {
+        if (patient == "")
+        {
+            patientFile.close();
+            return number_of_patients;
+        }
+        number_of_patients++;
+    }
+    patientFile.close();
     return number_of_patients;
 }
 void Hospital::set_Number_Of_Beds(int number_of_beds)
@@ -54,4 +63,12 @@ void Hospital::newOrder(string* order, int l)
         orderFile<< *(order + i)<<" "<< *(order + (i + 1));
     }
     orderFile.close();
+}
+bool space_Available()
+{
+    if (get_Number_Of_Patients() >= number_of_beds)
+    {
+        return false;
+    }
+    return true;
 }
