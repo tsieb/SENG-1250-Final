@@ -4,6 +4,7 @@
 #include <string>
 #include "Hospital.h"
 #include "Patient.h"
+#include "Supplier.h"
 using namespace std;
 void startUp()
 {

@@ -72,5 +72,3 @@ bool space_Available()
     }
     return true;
 }
-
-//How's it going, group?//
