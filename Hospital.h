@@ -1,5 +1,4 @@
 #ifndef HOSPITAL_H
-#DEFINE HOSPITAL_H
 #include <iostream>
 #include <sstream>
 #include <fstream>
