@@ -66,7 +66,7 @@ public:
     {
         fstream orderFile;
         orderFile.open("orders.dat", ios::app);
-        for(int i = 0; i <= l, i+=2)
+        for(int i=0; i<=l; i+=2)
         {
             orderFile<< *(order + i)<<" "<< *(order + (i + 1));
         }
@@ -166,7 +166,7 @@ class Supplier : public Hospital
     int id, stock, in, amount;
     std::string supply;
 
-    addSupply()
+    void addSupply()
     {
       int temp;
       cout<<"Enter the id, name and stock of the supply you want to add: ";
@@ -175,7 +175,7 @@ class Supplier : public Hospital
       supplies.open("Supplies.dat", ios::app | ios::binary);
       while(getline(supplies, supply))
       {
-        if(id==temp;)
+        if(id==temp)
         {
           cout<<"An item already exists with this id.";
           break;
@@ -183,17 +183,18 @@ class Supplier : public Hospital
       }
     }
 
-    getSupplyList()
+    void getSupplyList()
     {
       supplies.open("Supplies.dat", ios::in | ios::binary);
       while(getline(supplies, supply))
       {
         supplies>>id>>supply>>stock;
-        cout<<supply<<" "
+        cout<<supply<<" ";
       }
+      supplies.close();
     }
 
-    depositSupplies()
+    void depositSupplies()
     {
       cout<<"Enter the ID of the supply you wish to deposit to, and the amount to deposit: ";
       cin>>in>>amount;
@@ -204,7 +205,7 @@ class Supplier : public Hospital
         if(id==in)
         {
           cout<<id<<" "<<supply<<" "<<stock;
-          supplies.close;
+          supplies.close();
           break;
         }
         else
@@ -214,7 +215,7 @@ class Supplier : public Hospital
       }
     }
 
-    withdrawSupplies()
+    void withdrawSupplies()
     {
       cout<<"Enter the ID of the supply you wish to withdraw from, and the amount to withdraw: ";
       cin>>in>>amount;
@@ -225,7 +226,7 @@ class Supplier : public Hospital
         if(id==in)
         {
           cout<<id<<" "<<supply<<" "<<stock;
-          supplies.close;
+          supplies.close();
           break;
         }
         else
@@ -235,7 +236,7 @@ class Supplier : public Hospital
       }
     }
 
-    outputStock()
+    void outputStock()
     {
       cout<<"Enter the ID of the supply you wish to check the stock of: ";
       cin>>in;
@@ -246,7 +247,7 @@ class Supplier : public Hospital
         if(id==in)
         {
           cout<<stock;
-          supplies.close;
+          supplies.close();
           break;
         }
         else
@@ -267,7 +268,7 @@ void startUp()
 }
 
 
-int int main(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
     startUp();
     cout<<"List of options"<<endl;
