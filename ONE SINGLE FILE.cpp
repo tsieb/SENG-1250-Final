@@ -6,6 +6,11 @@ using namespace std;
 
 class Hospital
 {
+    //TODO Create initial values to file
+    //Add constructor to check for said file
+    //if file then set values and consider initialised
+    //else ask for user input which is written to file
+
 public:
     int number_of_patients;
     int number_of_beds;
@@ -62,16 +67,6 @@ public:
     {
         return address;
     }
-    void newOrder(string* order, int l)
-    {
-        fstream orderFile;
-        orderFile.open("orders.dat", ios::app);
-        for(int i=0; i<=l; i+=2)
-        {
-            orderFile<< *(order + i)<<" "<< *(order + (i + 1));
-        }
-        orderFile.close();
-    }
     bool space_Available()
     {
         if (get_Number_Of_Patients() >= number_of_beds)
@@ -85,6 +80,7 @@ public:
 
 class Patient : public Hospital
 {
+public:
     std::string symptoms[10];
     std::string illnesses[10];
     std::string allergies[10];
@@ -155,6 +151,10 @@ class Patient : public Hospital
         }
         patientFile.close();
         return false;
+    }
+    void check_Out_Patient(int id)
+    {
+        //TODO
     }
 
 };
@@ -264,13 +264,190 @@ void startUp()
     cout<<"                Booting."<<endl;
     cout<<"                Booting.."<<endl;
     cout<<"                Booting..."<<endl<<endl;
-    cout<<"/tInitialization Complete"<<endl<<endl;
+    cout<<"     Initialization Complete"<<endl<<endl;
 }
 
+void line()
+{
+    cout<<      "-----------------------------------------"<<endl;
+}
 
 int main(int argc, char const *argv[])
 {
+    int choice, number;
+    string address_string, patient_string;
     startUp();
-    cout<<"List of options"<<endl;
+    line();
+    cout<<"1 - Hospital"<<endl;
+    cout<<"2 - Patient"<<endl;
+    cout<<"3 - Supplies"<<endl;
+    cout<<"Choice: ";
+    cin>>choice;
+    switch (choice)
+    {
+        case 1:
+            Hospital h1;
+            line();
+            cout<<"1 - Configure Resources"<<endl;
+            cout<<"2 - Check Resources"<<endl;
+            cout<<"Choice: ";
+            cin>>choice;
+            switch (choice)
+            {
+                case 1:
+                    line();
+                    cout<<"1 - Set Doctors"<<endl;
+                    cout<<"2 - Set Nurses"<<endl;
+                    cout<<"3 - Set Beds"<<endl;
+                    cout<<"4 - Set Address"<<endl;
+                    cin>>choice;
+                    switch (choice)
+                    {
+                        case 1:
+                            cout<<"Enter Number: ";
+                            cin>>number;
+                            h1.set_Number_Of_Doctors(number);
+                            break;
+                        case 2:
+                            cout<<"Enter Number: ";
+                            cin>>number;
+                            h1.set_Number_Of_Nurses(number);
+                            break;
+                        case 3:
+                            cout<<"Enter Number: ";
+                            cin>>number;
+                            h1.set_Number_Of_Beds(number);
+                            break;
+                        case 4:
+                            cout<<"Enter Address: ";
+                            getline(cin, address_string);
+                            h1.set_Number_Of_Beds(number);
+                            break;
+                        default :
+                            cout<<"Invalid Entry"<<endl;
+                            break;
+                    }
+                    break;
+                case 2:
+                    line();
+                    cout<<"1 - Check Number of Doctors"<<endl;
+                    cout<<"2 - Check Number of Nurses"<<endl;
+                    cout<<"3 - Check Number of Beds"<<endl;
+                    cout<<"4 - Check Address"<<endl;
+                    cin>>choice;
+                    switch (choice)
+                    {
+                        case 1:
+                            cout<<"Number of Doctors: "<<h1.get_Number_Of_Doctors()<<endl;
+                            break;
+                        case 2:
+                            cout<<"Number of Nurses: "<<h1.get_Number_Of_Nurses()<<endl;
+                            break;
+                        case 3:
+                            cout<<"Number of Beds: "<<h1.get_Number_Of_Beds()<<endl;
+                            break;
+                        case 4:
+                            cout<<"Address: "<<h1.get_Address()<<endl;
+                            break;
+                        default :
+                            cout<<"Invalid Entry"<<endl;
+                            break;
+                    }
+                    break;
+                default :
+                    cout<<"Invalid Entry"<<endl;
+                    break;
+            }
+            break;
+        case 2:
+            Patient p1;
+            line();
+            cout<<"1 - Check-In Patient"<<endl;
+            cout<<"2 - Check-Out Patient"<<endl;
+            cout<<"3 - Add Patient Information"<<endl;
+            cout<<"Choice: ";
+            cin>>choice;
+            switch (choice)
+            {
+                case 1:
+                    if(p1.check_In_Patient())
+                    {
+                        cout<<"Check-in Successful"<<endl;
+                        break;
+                    }
+                    cout<<"Unable to add patient - No space available"<<endl;
+                    break;
+                case 2:
+                    cout<<"Enter patient ID: ";
+                    cin>>number;
+                    p1.check_Out_Patient(number);
+                    break;
+                case 3:
+                    line();
+                    cout<<"1 - Add Symptom"<<endl;
+                    cout<<"2 - Add Illness"<<endl;
+                    cout<<"3 - Add Allergy"<<endl;
+                    cout<<"Choice: ";
+                    cin>>choice;
+                    switch (choice)
+                    {
+                        case 1:
+                            cout<<"Enter Symptom: ";
+                            getline(cin, patient_string);
+                            p1.add_Symptom(patient_string);
+                            break;
+                        case 2:
+                        cout<<"Enter Illness: ";
+                        getline(cin, patient_string);
+                            p1.add_Illness(patient_string);
+                            break;
+                        case 3:
+                        cout<<"Enter Allergy: ";
+                        getline(cin, patient_string);
+                            p1.add_Allergy(patient_string);
+                            break;
+                        default :
+                            cout<<"Invalid Entry"<<endl;
+                            break;
+                    }
+                    break;
+            }
+            break;
+        case 3:
+            Supplier s1;
+            line();
+            cout<<"1 - Check Supply"<<endl;
+            cout<<"2 - List Supplies"<<endl;
+            cout<<"3 - Withdraw Supplies"<<endl;
+            cout<<"4 - Deposit Supplies"<<endl;
+            cout<<"5 - Add New Supply"<<endl;
+            cout<<"Choice: ";
+            cin>>choice;
+            switch (choice)
+            {
+                case 1:
+                    s1.outputStock();
+                    break;
+                case 2:
+                    s1.getSupplyList();
+                    break;
+                case 3:
+                    s1.withdrawSupplies();
+                    break;
+                case 4:
+                    s1.depositSupplies();
+                    break;
+                case 5:
+                    s1.addSupply();
+                    break;
+                default :
+                    cout<<"Invalid Entry"<<endl;
+                    break;
+            }
+            break;
+        default :
+            cout<<"Invalid Entry"<<endl;
+            break;
+    }
     return 0;
 }
