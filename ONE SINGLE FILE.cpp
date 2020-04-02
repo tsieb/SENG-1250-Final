@@ -18,6 +18,35 @@ public:
     int number_of_nurses;
     string address;
 
+    Hospital()
+    {
+        fstream hospitalFile;
+        string line;
+        getline(hospitalFile, line);
+        if (line != "")
+        {
+            address = line;
+            hospitalFile>>number_of_beds;
+            hospitalFile>>number_of_nurses;
+            hospitalFile>>number_of_doctors;
+        }
+        else
+        {
+            cout<<"Enter the address: ";
+            getline(cin, address);
+            cout<<"Enter the number of beds: ";
+            cin>>number_of_beds;
+            cout<<"Enter the number of nurses: ";
+            cin>>number_of_nurses;
+            cout<<"Enter the number of doctors: ";
+            cin>>number_of_doctors;
+        }
+    }
+    Hospital()
+    {
+
+    }
+
     int get_Number_Of_Patients()
     {
         fstream patientFile;
