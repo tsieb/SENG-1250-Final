@@ -22,6 +22,7 @@ public:
     {
         fstream hospitalFile;
         string line;
+        hospitalFile,open("hospital.txt", ios::in)
         getline(hospitalFile, line);
         if (line != "")
         {
@@ -29,6 +30,7 @@ public:
             hospitalFile>>number_of_beds;
             hospitalFile>>number_of_nurses;
             hospitalFile>>number_of_doctors;
+            hospitalFile.close();
         }
         else
         {
@@ -40,11 +42,11 @@ public:
             cin>>number_of_nurses;
             cout<<"Enter the number of doctors: ";
             cin>>number_of_doctors;
+            hospitalFile.close();
+            hospitalFile,open("hospital.txt", ios::out)
+            hospitalFile<<address<<endl<<number_of_beds<<endl<<number_of_nurses<<endl<<number_of_doctors;
+            hospitalFile.close();
         }
-    }
-    Hospital()
-    {
-
     }
 
     int get_Number_Of_Patients()
