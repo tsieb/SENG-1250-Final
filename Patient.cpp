@@ -6,6 +6,14 @@
 #include "Patient.h"
 using namespace std;
 
+void Patient::set_Name(string name)
+{
+    this->name = name;
+}
+int Patient::get_Name(int ID)
+{
+    return name;
+}
 void Patient::set_Age(int age)
 {
     this->age = age;
@@ -13,6 +21,14 @@ void Patient::set_Age(int age)
 int Patient::get_Age()
 {
     return age;
+}
+void Patient::set_Height(double height)
+{
+    this->height = height;
+}
+double Patient::get_Height()
+{
+    return height;
 }
 void Patient::set_Weight(double weight)
 {
@@ -22,13 +38,21 @@ double Patient::get_Weight()
 {
     return weight;
 }
-void Patient::set_Height(double height)
+void Patient::set_ID(int ID)
 {
-    this->height = height;
+    this->ID = ID;
 }
-double Patient::get_Height()
+int Patient::get_ID()
 {
-    return height;
+    return ID;
+}
+void Patient::set_BloodType(char BloodType)
+{
+    this->BloodType = BloodType;
+}
+int Patient::get_BloddType()
+{
+    return BloodType;
 }
 bool check_In_Patient()
 {
