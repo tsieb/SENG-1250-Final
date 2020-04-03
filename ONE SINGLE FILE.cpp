@@ -107,10 +107,7 @@ public:
 class Patient : public Hospital
 {
 public:
-    std::string symptoms[10];
-    std::string illnesses[10];
-    std::string allergies[10];
-    std::string name;
+    string name;
     int age;
     string blood_type;
     double height;
@@ -186,18 +183,6 @@ public:
     double get_Height()
     {
         return height;
-    }
-    void add_Symptom(string symptom)
-    {
-        //TODO add symptom to symptoms
-    }
-    void add_Illness(string illness)
-    {
-        //TODO add illness to illnesses
-    }
-    void add_Allergy(string allergy)
-    {
-        //TODO add allergy to allergies
     }
     bool check_In_Patient()
     {
