@@ -6,11 +6,6 @@ using namespace std;
 
 class Hospital
 {
-    //TODO Create initial values to file
-    //Add constructor to check for said file
-    //if file then set values and consider initialised
-    //else ask for user input which is written to file
-
 public:
     int number_of_patients;
     int number_of_beds;
@@ -122,6 +117,52 @@ public:
     double weight;
     int id;
 
+
+    void set_Name(string name)
+    {
+        this->name = name;
+    }
+    int get_Name(int id)
+    {
+        ifstream patientFile1;
+        ifstream patientFile2;
+        input_stream1.open("patients.dat");
+        input_stream2.open("patients.dat");
+        {
+        string name;
+        int Person = 0;
+        int count_word = 1;
+        while(getline(input_stream1, line))
+        {
+            count_word = 1;
+            if(line == "")
+            break;
+            cout<<line<<endl;
+
+            for(int i =0; line[i] != '\0'; i++)
+            {
+                if(line[i]==' ')
+                count_word++;
+            }
+            for (int j =0; j<count_word; j++)
+            {
+                input_stream2 >>ID;
+                if(j == 5)
+                {
+                if(ID == id)
+                Person++;
+            }
+            }
+
+        }
+        cout<<"The name of the person with this id is: "<<Person;
+
+        input_stream1.close();
+        input_stream2.close();
+        }
+        patientFile.close();
+        return name;
+    }
     void set_Age(int age)
     {
         this->age = age;
