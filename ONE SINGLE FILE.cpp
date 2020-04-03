@@ -107,13 +107,13 @@ public:
 class Patient : public Hospital
 {
 public:
-    string name;
+    
+    std::string name;
     int age;
     string blood_type;
     double height;
     double weight;
     int id;
-
 
     void set_Name(string name)
     {
@@ -154,11 +154,9 @@ public:
         }
         cout<<"The name of the person with this id is: "<<Person;
 
-        input_stream1.close();
-        input_stream2.close();
-        }
-        patientFile.close();
-        return name;
+        input_patientFile1.close();
+        input_patientFile2.close();
+       
     }
     void set_Age(int age)
     {
@@ -168,6 +166,14 @@ public:
     {
         return age;
     }
+    void set_Height(double height)
+    {
+        this->height = height;
+    }
+    double get_Height()
+    {
+        return height;
+    }
     void set_Weight(double weight)
     {
         this->weight = weight;
@@ -176,13 +182,13 @@ public:
     {
         return weight;
     }
-    void set_Height(double height)
+     void set_BloodType(string blood_type)
     {
-        this->height = height;
+        this->blood_type = blood_type;
     }
-    double get_Height()
+    double get_BloodType()
     {
-        return height;
+        return blood_type;
     }
     bool check_In_Patient()
     {
