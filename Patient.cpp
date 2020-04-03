@@ -10,7 +10,7 @@ void Patient::set_Name(string name)
 {
     this->name = name;
 }
-int Patient::get_Name(int ID)
+int Patient::get_Name(int id)
 {
     return name;
 }
@@ -38,21 +38,21 @@ double Patient::get_Weight()
 {
     return weight;
 }
-void Patient::set_ID(int ID)
+void Patient::set_ID(int id)
 {
-    this->ID = ID;
+    this->id = id;
 }
 int Patient::get_ID()
 {
-    return ID;
+    return id;
 }
-void Patient::set_BloodType(char BloodType)
+void Patient::set_BloodType(string blood_type)
 {
-    this->BloodType = BloodType;
+    this->blood_type = blood_type;
 }
 int Patient::get_BloddType()
 {
-    return BloodType;
+    return blood_type;
 }
 bool check_In_Patient()
 {
