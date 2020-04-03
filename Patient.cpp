@@ -30,18 +30,6 @@ double Patient::get_Height()
 {
     return height;
 }
-void Patient::add_Symptom(string symptom)
-{
-    //TODO add symptom to symptoms
-}
-void Patient::add_Illness(string illness)
-{
-    //TODO add illness to illnesses
-}
-void Patient::add_Allergy(string allergy)
-{
-    //TODO add allergy to allergies
-}
 bool check_In_Patient()
 {
     fstream patientFile;
