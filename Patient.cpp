@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <istream>
 #include <string>
 #include "Hospital.h"
 #include "Patient.h"
@@ -12,6 +13,44 @@ void Patient::set_Name(string name)
 }
 int Patient::get_Name(int id)
 {
+    ifstream patientFile1;
+    ifstream patientFile2;
+    input_stream1.open("patients.dat");
+	input_stream2.open("patients.dat");
+    {
+	string name;
+	int id;
+	int Person = 0;
+	int count_word = 1;
+	while(getline(input_stream1, line))
+	{
+		count_word = 1;
+		if(line == "")
+		break;
+		cout<<line<<endl;
+		
+		for(int i =0; line[i] != '\0'; i++)
+		{
+			if(line[i]==' ')
+			count_word++;
+		}
+		for (int j =0; j<count_word; j++)
+		{
+			input_stream2 >>ID;
+			if(j == 5)
+			{
+			if(ID == id)
+			Person++;
+		}
+		}
+
+	}
+	cout<<"The name of the person with this id is: "<<Person;
+	
+	input_stream1.close();
+	input_stream2.close();
+    }
+    patientFile.close();
     return name;
 }
 void Patient::set_Age(int age)
