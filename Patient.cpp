@@ -16,10 +16,9 @@ int Patient::get_Name(int id)
     ifstream patientFile1;
     ifstream patientFile2;
     input_stream1.open("patients.dat");
-	input_stream2.open("patients.dat");
+    input_stream2.open("patients.dat");
     {
 	string name;
-	int id;
 	int Person = 0;
 	int count_word = 1;
 	while(getline(input_stream1, line))
