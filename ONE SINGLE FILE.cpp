@@ -445,7 +445,7 @@ int main(int argc, char const *argv[])
                     break;
             }
             break;
-        default :
+        default:
             cout<<"Invalid Entry"<<endl;
             break;
     }
