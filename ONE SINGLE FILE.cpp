@@ -17,7 +17,11 @@ public:
     {
         fstream hospitalFile;
         string line;
+<<<<<<< HEAD
         hospitalFile,open("hospital.txt", ios::in)
+=======
+        hospitalFile.open("hospital.txt", ios::in);
+>>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
         getline(hospitalFile, line);
         if (line != "")
         {
@@ -38,7 +42,11 @@ public:
             cout<<"Enter the number of doctors: ";
             cin>>number_of_doctors;
             hospitalFile.close();
+<<<<<<< HEAD
             hospitalFile,open("hospital.txt", ios::out)
+=======
+            hospitalFile.open("hospital.txt", ios::out);
+>>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
             hospitalFile<<address<<endl<<number_of_beds<<endl<<number_of_nurses<<endl<<number_of_doctors;
             hospitalFile.close();
         }
@@ -107,13 +115,17 @@ public:
 class Patient : public Hospital
 {
 public:
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     std::string name;
     int age;
     string blood_type;
     double height;
     double weight;
-    int id;
+    int id, ID;
 
     void set_Name(string name)
     {
@@ -123,6 +135,7 @@ public:
     {
         ifstream patientFile1;
         ifstream patientFile2;
+<<<<<<< HEAD
         input_stream1.open("patients.dat");
         input_stream2.open("patients.dat");
         {
@@ -157,12 +170,55 @@ public:
         input_patientFile1.close();
         input_patientFile2.close();
        
+=======
+        string line;
+        patientFile1.open("patients.dat");
+        patientFile2.open("patients.dat");
+        {
+            string name;
+            int person = 0;
+            int count_word = 1;
+            while(getline(patientFile1, line))
+            {
+                count_word = 1;
+                if(line == "")
+                break;
+                cout<<line<<endl;
+
+                for(int i =0; line[i] != '\0'; i++)
+                {
+                    if(line[i]==' ')
+                    count_word++;
+                }
+                for (int j =0; j<count_word; j++)
+                {
+                    patientFile2 >>ID;
+                    if(j == 5)
+                    {
+                    if(ID == id)
+                    person++;
+                    }
+                }
+            }
+
+
+        cout<<"The name of the person with this id is: ";
+        return person;
+        }
+        patientFile1.close();
+        patientFile2.close();
+
+>>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     }
     void set_Age(int age)
     {
         this->age = age;
     }
+<<<<<<< HEAD
     int get_Age()
+=======
+    int get_Age(int n)
+>>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     {
         return age;
     }
@@ -170,13 +226,14 @@ public:
     {
         this->height = height;
     }
-    double get_Height()
+    double get_Height(int n)
     {
         return height;
     }
     void set_Weight(double weight)
     {
         this->weight = weight;
+<<<<<<< HEAD
     }
     double get_Weight()
     {
@@ -187,6 +244,18 @@ public:
         this->blood_type = blood_type;
     }
     double get_BloodType()
+=======
+    }
+    double get_Weight(int n)
+    {
+        return weight;
+    }
+     void set_BloodType(string blood_type)
+    {
+        this->blood_type = blood_type;
+    }
+    string get_BloodType(int n)
+>>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     {
         return blood_type;
     }
@@ -231,19 +300,34 @@ class Supplier : public Hospital
 
     void addSupply()
     {
-      int temp;
+      int tempID, check=1, tempStock;
+      string tempSupply;
       cout<<"Enter the id, name and stock of the supply you want to add: ";
-      cin>>id>>supply>>stock;
-      temp=id;
-      supplies.open("Supplies.dat", ios::app | ios::binary);
+      cin>>tempID>>tempSupply>>tempStock;
+
+      supplies.open("Supplies.dat", ios::in | ios::binary);
       while(getline(supplies, supply))
       {
-        if(id==temp)
+		supplies>>id>>supply>>stock;
+        if(id==tempID)
         {
           cout<<"An item already exists with this id.";
+          check=0;
           break;
         }
       }
+      supplies.close();
+      if(check==1)
+      {
+		while(getline(supplies, supply))
+		{
+			cout<<endl;
+		}
+		supplies.open("Supplies.dat", ios::app | ios::binary);
+		supplies<<tempID<<" "<<tempSupply<<" "<<tempStock;
+		cout<<endl;
+		supplies.close();
+	  }
     }
 
     void getSupplyList()
@@ -340,177 +424,193 @@ int main(int argc, char const *argv[])
     int choice, number;
     string address_string, patient_string;
     startUp();
-    line();
-    cout<<"1 - Hospital"<<endl;
-    cout<<"2 - Patient"<<endl;
-    cout<<"3 - Supplies"<<endl;
-    cout<<"Choice: ";
-    cin>>choice;
-    switch (choice)
+    while (1)
     {
-        case 1:
-            Hospital h1;
-            line();
-            cout<<"1 - Configure Resources"<<endl;
-            cout<<"2 - Check Resources"<<endl;
-            cout<<"Choice: ";
-            cin>>choice;
-            switch (choice)
-            {
-                case 1:
-                    line();
-                    cout<<"1 - Set Doctors"<<endl;
-                    cout<<"2 - Set Nurses"<<endl;
-                    cout<<"3 - Set Beds"<<endl;
-                    cout<<"4 - Set Address"<<endl;
-                    cin>>choice;
-                    switch (choice)
-                    {
-                        case 1:
-                            cout<<"Enter Number: ";
-                            cin>>number;
-                            h1.set_Number_Of_Doctors(number);
-                            break;
-                        case 2:
-                            cout<<"Enter Number: ";
-                            cin>>number;
-                            h1.set_Number_Of_Nurses(number);
-                            break;
-                        case 3:
-                            cout<<"Enter Number: ";
-                            cin>>number;
-                            h1.set_Number_Of_Beds(number);
-                            break;
-                        case 4:
-                            cout<<"Enter Address: ";
-                            getline(cin, address_string);
-                            h1.set_Number_Of_Beds(number);
-                            break;
-                        default :
-                            cout<<"Invalid Entry"<<endl;
-                            break;
-                    }
-                    break;
-                case 2:
-                    line();
-                    cout<<"1 - Check Number of Doctors"<<endl;
-                    cout<<"2 - Check Number of Nurses"<<endl;
-                    cout<<"3 - Check Number of Beds"<<endl;
-                    cout<<"4 - Check Address"<<endl;
-                    cin>>choice;
-                    switch (choice)
-                    {
-                        case 1:
-                            cout<<"Number of Doctors: "<<h1.get_Number_Of_Doctors()<<endl;
-                            break;
-                        case 2:
-                            cout<<"Number of Nurses: "<<h1.get_Number_Of_Nurses()<<endl;
-                            break;
-                        case 3:
-                            cout<<"Number of Beds: "<<h1.get_Number_Of_Beds()<<endl;
-                            break;
-                        case 4:
-                            cout<<"Address: "<<h1.get_Address()<<endl;
-                            break;
-                        default :
-                            cout<<"Invalid Entry"<<endl;
-                            break;
-                    }
-                    break;
-                default :
-                    cout<<"Invalid Entry"<<endl;
-                    break;
-            }
-            break;
-        case 2:
-            Patient p1;
-            line();
-            cout<<"1 - Check-In Patient"<<endl;
-            cout<<"2 - Check-Out Patient"<<endl;
-            cout<<"3 - Add Patient Information"<<endl;
-            cout<<"Choice: ";
-            cin>>choice;
-            switch (choice)
-            {
-                case 1:
-                    if(p1.check_In_Patient())
-                    {
-                        cout<<"Check-in Successful"<<endl;
-                        break;
-                    }
-                    cout<<"Unable to add patient - No space available"<<endl;
-                    break;
-                case 2:
-                    cout<<"Enter patient ID: ";
-                    cin>>number;
-                    p1.check_Out_Patient(number);
-                    break;
-                case 3:
-                    line();
-                    cout<<"1 - Add Symptom"<<endl;
-                    cout<<"2 - Add Illness"<<endl;
-                    cout<<"3 - Add Allergy"<<endl;
-                    cout<<"Choice: ";
-                    cin>>choice;
-                    switch (choice)
-                    {
-                        case 1:
-                            cout<<"Enter Symptom: ";
-                            getline(cin, patient_string);
-                            p1.add_Symptom(patient_string);
-                            break;
-                        case 2:
-                        cout<<"Enter Illness: ";
-                        getline(cin, patient_string);
-                            p1.add_Illness(patient_string);
-                            break;
-                        case 3:
-                        cout<<"Enter Allergy: ";
-                        getline(cin, patient_string);
-                            p1.add_Allergy(patient_string);
-                            break;
-                        default :
-                            cout<<"Invalid Entry"<<endl;
-                            break;
-                    }
-                    break;
-            }
-            break;
-        case 3:
-            Supplier s1;
-            line();
-            cout<<"1 - Check Supply"<<endl;
-            cout<<"2 - List Supplies"<<endl;
-            cout<<"3 - Withdraw Supplies"<<endl;
-            cout<<"4 - Deposit Supplies"<<endl;
-            cout<<"5 - Add New Supply"<<endl;
-            cout<<"Choice: ";
-            cin>>choice;
-            switch (choice)
-            {
-                case 1:
-                    s1.outputStock();
-                    break;
-                case 2:
-                    s1.getSupplyList();
-                    break;
-                case 3:
-                    s1.withdrawSupplies();
-                    break;
-                case 4:
-                    s1.depositSupplies();
-                    break;
-                case 5:
-                    s1.addSupply();
-                    break;
-                default :
-                    cout<<"Invalid Entry"<<endl;
-                    break;
-            }
-            break;
-        default :
-            cout<<"Invalid Entry"<<endl;
-            break;
+      line();
+      cout<<"1 - Hospital"<<endl;
+      cout<<"2 - Patient"<<endl;
+      cout<<"3 - Supplies"<<endl;
+      cout<<"Choice: ";
+      cin>>choice;
+      if (choice == 1)
+      {
+          Hospital h1;
+          line();
+          cout<<"1 - Configure Resources"<<endl;
+          cout<<"2 - Check Resources"<<endl;
+          cout<<"Choice: ";
+          cin>>choice;
+          switch (choice)
+          {
+              case 1:
+                  line();
+                  cout<<"1 - Set Doctors"<<endl;
+                  cout<<"2 - Set Nurses"<<endl;
+                  cout<<"3 - Set Beds"<<endl;
+                  cout<<"4 - Set Address"<<endl;
+                  cin>>choice;
+                  switch (choice)
+                  {
+                      case 1:
+                          cout<<"Enter Number: ";
+                          cin>>number;
+                          h1.set_Number_Of_Doctors(number);
+                          break;
+                      case 2:
+                          cout<<"Enter Number: ";
+                          cin>>number;
+                          h1.set_Number_Of_Nurses(number);
+                          break;
+                      case 3:
+                          cout<<"Enter Number: ";
+                          cin>>number;
+                          h1.set_Number_Of_Beds(number);
+                          break;
+                      case 4:
+                          cout<<"Enter Address: ";
+                          getline(cin, address_string);
+                          h1.set_Number_Of_Beds(number);
+                          break;
+                      default :
+                          cout<<"Invalid Entry"<<endl;
+                          break;
+                  }
+                  break;
+              case 2:
+                  line();
+                  cout<<"1 - Check Number of Doctors"<<endl;
+                  cout<<"2 - Check Number of Nurses"<<endl;
+                  cout<<"3 - Check Number of Beds"<<endl;
+                  cout<<"4 - Check Address"<<endl;
+                  cin>>choice;
+                  switch (choice)
+                  {
+                      case 1:
+                          cout<<"Number of Doctors: "<<h1.get_Number_Of_Doctors()<<endl;
+                          break;
+                      case 2:
+                          cout<<"Number of Nurses: "<<h1.get_Number_Of_Nurses()<<endl;
+                          break;
+                      case 3:
+                          cout<<"Number of Beds: "<<h1.get_Number_Of_Beds()<<endl;
+                          break;
+                      case 4:
+                          cout<<"Address: "<<h1.get_Address()<<endl;
+                          break;
+                      default :
+                          cout<<"Invalid Entry"<<endl;
+                          break;
+                  }
+                  break;
+              default :
+                  cout<<"Invalid Entry"<<endl;
+                  break;
+          }
     }
-    return 0;
+    else if (choice == 2)
+    {
+          Patient p1;
+          line();
+          cout<<"1 - Check-In Patient"<<endl;
+          cout<<"2 - Check-Out Patient"<<endl;
+          cout<<"3 - View Patient Information"<<endl;
+          cout<<"Choice: ";
+          cin>>choice;
+          switch (choice)
+          {
+              case 1:
+                  if(p1.check_In_Patient())
+                  {
+                      cout<<"Check-in Successful"<<endl;
+                      break;
+                  }
+                  cout<<"Unable to add patient - No space available"<<endl;
+                  break;
+              case 2:
+                  cout<<"Enter patient ID: ";
+                  cin>>number;
+                  p1.check_Out_Patient(number);
+                  break;
+              case 3:
+                  line();
+                  cout<<"1 - Get patient name"<<endl;
+                  cout<<"2 - Get patient age"<<endl;
+                  cout<<"3 - Get patient weight"<<endl;
+                  cout<<"4 - Get patient height"<<endl;
+                  cout<<"5 - Get patient blood type"<<endl;
+                  cout<<"Choice: ";
+                  cin>>choice;
+                  switch (choice)
+                  {
+                      case 1:
+                          cout<<"Enter patient ID: ";
+                          cin>>number;
+                          p1.get_Name(number);
+                          break;
+                      case 2:
+                          cout<<"Enter patient ID: ";
+                          cin>>number;
+                          p1.get_Age(number);
+                          break;
+                      case 3:
+                          cout<<"Enter patient ID: ";
+                          cin>>number;
+                          p1.get_Weight(number);
+                          break;
+                      case 4:
+                          cout<<"Enter patient ID: ";
+                          cin>>number;
+                          p1.get_Height(number);
+                          break;
+                      case 5:
+                          cout<<"Enter patient ID: ";
+                          cin>>number;
+                          p1.get_BloodType(number);
+                          break;
+                      default :
+                          cout<<"Invalid Entry"<<endl;
+                          break;
+                  }
+                  break;
+          }
+      }
+      else if (choice == 3)
+      {
+          Supplier s1;
+          line();
+          cout<<"1 - Check Supply"<<endl;
+          cout<<"2 - List Supplies"<<endl;
+          cout<<"3 - Withdraw Supplies"<<endl;
+          cout<<"4 - Deposit Supplies"<<endl;
+          cout<<"5 - Add New Supply"<<endl;
+          cout<<"Choice: ";
+          cin>>choice;
+          switch (choice)
+          {
+              case 1:
+                  s1.outputStock();
+                  break;
+              case 2:
+                  s1.getSupplyList();
+                  break;
+              case 3:
+                  s1.withdrawSupplies();
+                  break;
+              case 4:
+                  s1.depositSupplies();
+                  break;
+              case 5:
+                  s1.addSupply();
+                  break;
+              default :
+                  cout<<"Invalid Entry"<<endl;
+                  break;
+          }
+      }
+      else
+      {
+          cout<<"Invalid Entry"<<endl;
+      }
+      return 0;
+    }
 }
