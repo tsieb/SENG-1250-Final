@@ -17,11 +17,7 @@ public:
     {
         fstream hospitalFile;
         string line;
-<<<<<<< HEAD
-        hospitalFile,open("hospital.txt", ios::in)
-=======
         hospitalFile.open("hospital.txt", ios::in);
->>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
         getline(hospitalFile, line);
         if (line != "")
         {
@@ -42,11 +38,7 @@ public:
             cout<<"Enter the number of doctors: ";
             cin>>number_of_doctors;
             hospitalFile.close();
-<<<<<<< HEAD
-            hospitalFile,open("hospital.txt", ios::out)
-=======
             hospitalFile.open("hospital.txt", ios::out);
->>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
             hospitalFile<<address<<endl<<number_of_beds<<endl<<number_of_nurses<<endl<<number_of_doctors;
             hospitalFile.close();
         }
@@ -115,11 +107,6 @@ public:
 class Patient : public Hospital
 {
 public:
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     std::string name;
     int age;
     string blood_type;
@@ -135,42 +122,6 @@ public:
     {
         ifstream patientFile1;
         ifstream patientFile2;
-<<<<<<< HEAD
-        input_stream1.open("patients.dat");
-        input_stream2.open("patients.dat");
-        {
-        string name;
-        int Person = 0;
-        int count_word = 1;
-        while(getline(input_stream1, line))
-        {
-            count_word = 1;
-            if(line == "")
-            break;
-            cout<<line<<endl;
-
-            for(int i =0; line[i] != '\0'; i++)
-            {
-                if(line[i]==' ')
-                count_word++;
-            }
-            for (int j =0; j<count_word; j++)
-            {
-                input_stream2 >>ID;
-                if(j == 5)
-                {
-                if(ID == id)
-                Person++;
-            }
-            }
-
-        }
-        cout<<"The name of the person with this id is: "<<Person;
-
-        input_patientFile1.close();
-        input_patientFile2.close();
-       
-=======
         string line;
         patientFile1.open("patients.dat");
         patientFile2.open("patients.dat");
@@ -207,18 +158,12 @@ public:
         }
         patientFile1.close();
         patientFile2.close();
-
->>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     }
     void set_Age(int age)
     {
         this->age = age;
     }
-<<<<<<< HEAD
-    int get_Age()
-=======
     int get_Age(int n)
->>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     {
         return age;
     }
@@ -233,18 +178,6 @@ public:
     void set_Weight(double weight)
     {
         this->weight = weight;
-<<<<<<< HEAD
-    }
-    double get_Weight()
-    {
-        return weight;
-    }
-     void set_BloodType(string blood_type)
-    {
-        this->blood_type = blood_type;
-    }
-    double get_BloodType()
-=======
     }
     double get_Weight(int n)
     {
@@ -255,7 +188,6 @@ public:
         this->blood_type = blood_type;
     }
     string get_BloodType(int n)
->>>>>>> 82c34239525a0776c289c731659bbfe7e5efc34c
     {
         return blood_type;
     }
