@@ -238,7 +238,7 @@ class Supplier : public Hospital
       cin>>tempID>>tempSupply>>tempStock;
 
       supplies.open("Supplies.dat", ios::in | ios::binary);
-      while(supplies.eof())
+      while(supplies)
       {
 		supplies>>id>>supply>>stock;
         if(id==tempID)
@@ -251,12 +251,12 @@ class Supplier : public Hospital
       supplies.close();
       if(check==1)
       {
-		while(getline(supplies, supply))
+		while(supplies)
 		{
 			supplies<<endl;
 		}
 		supplies.open("Supplies.dat", ios::app | ios::binary);
-		supplies<<tempID<<" "<<tempSupply<<" "<<tempStock;
+		supplies<<tempID<<" "<<tempSupply<<" "<<tempStock<<endl;
 		cout<<endl;
 		supplies.close();
 	  }
