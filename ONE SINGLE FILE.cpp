@@ -240,7 +240,7 @@ class Supplier : public Hospital
       cin>>tempID>>tempSupply>>tempStock;
 
       supplies.open("Supplies.dat", ios::in | ios::binary);
-      while(getline(supplies, supply))
+      while(supplies.eof())
       {
 		supplies>>id>>supply>>stock;
         if(id==tempID)
