@@ -255,7 +255,7 @@ class Supplier : public Hospital
       {
 		while(getline(supplies, supply))
 		{
-			cout<<endl;
+			supplies<<endl;
 		}
 		supplies.open("Supplies.dat", ios::app | ios::binary);
 		supplies<<tempID<<" "<<tempSupply<<" "<<tempStock;
