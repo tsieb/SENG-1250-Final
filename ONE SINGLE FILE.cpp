@@ -30,6 +30,7 @@ public:
         else
         {
             cout<<"Enter the address: ";
+            cin.ignore();
             getline(cin, address);
             cout<<"Enter the number of beds: ";
             cin>>number_of_beds;
