@@ -258,18 +258,22 @@ class Supplier : public Hospital
 		}
 		supplies.open("Supplies.dat", ios::app | ios::binary);
 		supplies<<tempID<<" "<<tempSupply<<" "<<tempStock<<endl;
-		cout<<endl;
 		supplies.close();
 	  }
     }
 
     void getSupplyList()
     {
+		string supplyLast;
       supplies.open("Supplies.dat", ios::in | ios::binary);
-      while(getline(supplies, supply))
+      while(supplies)
       {
         supplies>>id>>supply>>stock;
-        cout<<supply<<" ";
+        if(supply!=supplyLast)
+        {
+			cout<<supply<<" ";
+		}
+        supplyLast=supply;
       }
       supplies.close();
     }
@@ -321,7 +325,7 @@ class Supplier : public Hospital
       cout<<"Enter the ID of the supply you wish to check the stock of: ";
       cin>>in;
       supplies.open("Supplies.dat", ios::in | ios::binary);
-      while(getline(supplies, supply))
+      while(supplies)
       {
         supplies>>id>>supply>>stock;
         if(id==in)
@@ -330,9 +334,10 @@ class Supplier : public Hospital
           supplies.close();
           break;
         }
-        else
+        else if(!supplies)
         {
           cout<<"There is no supply with this ID.";
+          break;
         }
       }
     }
