@@ -280,45 +280,94 @@ class Supplier : public Hospital
 
     void depositSupplies()
     {
+		int count=0, check=1;
       cout<<"Enter the ID of the supply you wish to deposit to, and the amount to deposit: ";
       cin>>in>>amount;
-      supplies.open("Supplies.dat", ios::app | ios::binary);
-      while(getline(supplies, supply))
+      supplies.open("Supplies.dat", ios::in | ios::binary);
+      while(supplies)
       {
         supplies>>id>>supply>>stock;
         if(id==in)
         {
-          cout<<id<<" "<<supply<<" "<<stock;
-          supplies.close();
           break;
         }
-        else
+        else if(!supplies)
         {
           cout<<"There is no supply with this ID.";
+          break;
+          check=0;
         }
+        count++;
       }
+      supplies.close();
+      if(check==1)
+      {
+		supplies.open("Supplies.dat", ios::app | ios::binary);
+		supplies<<id<<" "<<supply<<" "<<(stock+amount)<<endl;
+		supplies.close();
+	  }
     }
 
     void withdrawSupplies()
     {
+		int next=0, tempID, tempStock;
+		string strA, strB, tempSupply, line="", lineprev;
       cout<<"Enter the ID of the supply you wish to withdraw from, and the amount to withdraw: ";
       cin>>in>>amount;
-      supplies.open("Supplies.dat", ios::app | ios::binary);
-      while(getline(supplies, supply))
+      supplies.open("Supplies.dat", ios::in | ios::binary);
+      while(supplies)
       {
         supplies>>id>>supply>>stock;
+        line="";
+        if(supply=="")
+        {
+			break;
+		}
+        line += std::to_string(id);
+        line += " ";
+        line += supply;
+        line += " ";
+        line += std::to_string(stock);
         if(id==in)
         {
-          cout<<id<<" "<<supply<<" "<<stock;
-          supplies.close();
-          break;
+          tempID=id;
+          tempSupply=supply;
+          tempStock=stock;
+          next=1;
         }
-        else
+        else if(next==0)
         {
-          cout<<"There is no supply with this ID.";
-        }
-      }
-    }
+			strA += line;
+			strA += "\n";
+		}
+		else if(next==1)
+		{
+			strB += line;
+			strB += "\n";
+		}
+		lineprev==line;
+		}
+		supplies.close();
+		if(tempSupply=="")
+		{
+			cout<<"There is no supply with this ID.";
+		}
+		else
+		{
+			supplies.open("Supplies.dat", ios::out | ios::binary);
+
+			if(stock<amount)
+			{
+				cout<<"There are only "<<stock<<" in stock, so we will withdraw "<<stock<<" instead.";
+				supplies<<strA<<tempID<<" "<<tempSupply<<" "<<(tempStock-tempStock)<<endl<<strB<<endl;
+			}
+			else
+			{
+				supplies<<strA<<tempID<<" "<<tempSupply<<" "<<(tempStock-amount)<<endl<<strB<<endl;
+			}
+			supplies.close();
+		}
+	  }
 
     void outputStock()
     {
