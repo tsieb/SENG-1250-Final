@@ -259,6 +259,7 @@ class Supplier : public Hospital
 		supplies.open("Supplies.dat", ios::app | ios::binary);
 		supplies<<tempID<<" "<<tempSupply<<" "<<tempStock<<endl;
 		supplies.close();
+		cout<<"Supply succesfully added!";
 	  }
     }
 
@@ -266,12 +267,14 @@ class Supplier : public Hospital
     {
 		string supplyLast;
       supplies.open("Supplies.dat", ios::in | ios::binary);
+
+      cout<<"List of supplies:\n| ";
       while(supplies)
       {
         supplies>>id>>supply>>stock;
         if(supply!=supplyLast)
         {
-			cout<<supply<<" ";
+			cout<<supply<<" | ";
 		}
         supplyLast=supply;
       }
@@ -280,54 +283,25 @@ class Supplier : public Hospital
 
     void depositSupplies()
     {
-		int count=0, check=1;
+		int next=0, tempID, tempStock, check=1, IDprev=0;
+		string strA, strB, tempSupply, line="";
       cout<<"Enter the ID of the supply you wish to deposit to, and the amount to deposit: ";
       cin>>in>>amount;
       supplies.open("Supplies.dat", ios::in | ios::binary);
-      while(supplies)
-      {
-        supplies>>id>>supply>>stock;
-        if(id==in)
-        {
-          break;
-        }
-        else if(!supplies)
-        {
-          cout<<"There is no supply with this ID.";
-          break;
-          check=0;
-        }
-        count++;
-      }
-      supplies.close();
-      if(check==1)
-      {
-		supplies.open("Supplies.dat", ios::app | ios::binary);
-		supplies<<id<<" "<<supply<<" "<<(stock+amount)<<endl;
-		supplies.close();
-	  }
-    }
-
-    void withdrawSupplies()
-    {
-		int next=0, tempID, tempStock;
-		string strA, strB, tempSupply, line="", lineprev;
-      cout<<"Enter the ID of the supply you wish to withdraw from, and the amount to withdraw: ";
-      cin>>in>>amount;
-      supplies.open("Supplies.dat", ios::in | ios::binary);
-      while(supplies)
+      while(supplies && check==1)
       {
         supplies>>id>>supply>>stock;
         line="";
-        if(supply=="")
-        {
-			break;
-		}
         line += std::to_string(id);
         line += " ";
         line += supply;
         line += " ";
         line += std::to_string(stock);
+        if(id==IDprev)
+        {
+			check=0;
+			break;
+		}
         if(id==in)
         {
           tempID=id;
@@ -345,7 +319,61 @@ class Supplier : public Hospital
 			strB += line;
 			strB += "\n";
 		}
-		lineprev==line;
+		id=IDprev;
+		}
+		supplies.close();
+		if(tempSupply=="")
+		{
+			cout<<"There is no supply with this ID.";
+		}
+		else
+		{
+			supplies.open("Supplies.dat", ios::out | ios::binary);
+			supplies<<strA<<tempID<<" "<<tempSupply<<" "<<(tempStock+amount)<<endl<<strB<<endl;
+			supplies.close();
+			cout<<"Successfully desposited!";
+		}
+	  }
+
+    void withdrawSupplies()
+    {
+		int next=0, tempID, tempStock, check=1, idprev=0;
+		string strA, strB, tempSupply, line="";
+      cout<<"Enter the ID of the supply you wish to withdraw from, and the amount to withdraw: ";
+      cin>>in>>amount;
+      supplies.open("Supplies.dat", ios::in | ios::binary);
+      while(supplies && check==1)
+      {
+        supplies>>id>>supply>>stock;
+        line="";
+        line += std::to_string(id);
+        line += " ";
+        line += supply;
+        line += " ";
+        line += std::to_string(stock);
+        if(id==idprev)
+        {
+			check=0;
+			break;
+		}
+        if(id==in)
+        {
+          tempID=id;
+          tempSupply=supply;
+          tempStock=stock;
+          next=1;
+        }
+        else if(next==0)
+        {
+			strA += line;
+			strA += "\n";
+		}
+		else if(next==1)
+		{
+			strB += line;
+			strB += "\n";
+		}
+		id=idprev;
 		}
 		supplies.close();
 		if(tempSupply=="")
@@ -360,10 +388,12 @@ class Supplier : public Hospital
 			{
 				cout<<"There are only "<<stock<<" in stock, so we will withdraw "<<stock<<" instead.";
 				supplies<<strA<<tempID<<" "<<tempSupply<<" "<<(tempStock-tempStock)<<endl<<strB<<endl;
+				cout<<"Successfully withdrawn!";
 			}
 			else
 			{
 				supplies<<strA<<tempID<<" "<<tempSupply<<" "<<(tempStock-amount)<<endl<<strB<<endl;
+				cout<<"Successfully withdrawn!";
 			}
 			supplies.close();
 		}
@@ -379,7 +409,7 @@ class Supplier : public Hospital
         supplies>>id>>supply>>stock;
         if(id==in)
         {
-          cout<<stock;
+          cout<<supply<<"s: "<<stock;
           supplies.close();
           break;
         }
