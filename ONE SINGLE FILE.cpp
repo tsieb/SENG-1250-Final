@@ -244,7 +244,7 @@ class Supplier : public Hospital
 		supplies>>id>>supply>>stock;
         if(id==tempID)
         {
-          cout<<"An item already exists with this id.";
+          cout<<"An item already exists with this ID.";
           check=0;
           break;
         }
