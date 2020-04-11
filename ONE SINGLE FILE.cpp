@@ -217,10 +217,6 @@ public:
         patientFile.close();
         return false;
     }
-    void check_Out_Patient(int id)
-    {
-        //TODO
-    }
 
 };
 
