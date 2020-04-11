@@ -1,3 +1,7 @@
+//Trenton Sieb, T00644364
+//Noah Leslie, T00649006
+//Ahana Ahluwalia, T00638041
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
