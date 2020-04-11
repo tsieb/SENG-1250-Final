@@ -231,7 +231,7 @@ class Supplier : public Hospital
     {
       int tempID, check=1, tempStock;
       string tempSupply;
-      cout<<"Enter the id, name and stock of the supply you want to add: ";
+      cout<<"Enter the ID, name, and stock of the supply you want to add: ";
       cin>>tempID>>tempSupply>>tempStock;
 
       supplies.open("Supplies.dat", ios::in | ios::binary);
@@ -540,11 +540,6 @@ int main(int argc, char const *argv[])
                   cout<<"Unable to add patient - No space available"<<endl;
                   break;
               case 2:
-                  cout<<"Enter patient ID: ";
-                  cin>>number;
-                  p1.check_Out_Patient(number);
-                  break;
-              case 3:
                   line();
                   cout<<"1 - Get patient name"<<endl;
                   cout<<"2 - Get patient age"<<endl;
